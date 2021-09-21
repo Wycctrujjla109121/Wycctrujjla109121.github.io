@@ -1,24 +1,77 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    perspective: 1px; 
+    transform-style: preserve-3d;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-
-nav{
+header{
     width: 100%;
     height: 60px;
     background: #344051;
+    position: fixed;
 }
+
+nav{
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
 .logo{
     color: #fff;
     font-size: 28px;
     line-height: 60px;
-    padding-left: 388px;
+    /*padding-left: 388px;*/
     float: left;
+    animation: logoViev 2s ease;
+    -o-animation: logoViev 2s ease;
+    -moz-animation: logoViev 2s ease;
+
+}
+
+@keyframes logoViev{
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+main{
+    width: 100%;
+    height: 100%;
 }
 
 .menu{
-    float: left;
-    padding-left: 432px;
+    /*float: left;
+    padding-left: 432px;*/
+}
+
+.menu li a:visited{
+    color: white;
+}
+
+.menu li a{
+    transition: all 0.3s;
+    transform: scale(1);
+    display: inline-block;
+}
+
+
+
+.menu li a:hover{
+    color: #e88604;
+    
+}
+
+.menu li a:active{
+    transform: scale(1.1);
 }
 
 .menu li{
@@ -28,20 +81,69 @@ nav{
     margin-right: 40px;
     font-size: 16px;
     text-transform: uppercase;
+    animation: topshift 0.4s ease forwards;
+    -o-animation: topshift 0.4s ease forwards;
+    -webkit-animation: topshift 0.4s ease forwards;
+    opacity: 0;
+}
+
+.menu li:nth-child(2){
+    animation-delay: 0.4s;
+}
+.menu li:nth-child(3){
+    animation-delay: 0.8s;
+}
+.menu li:nth-child(4){
+    animation-delay: 1.2s;
+}
+.menu li:nth-child(5){
+    animation-delay: 1.6s;
+}
+.menu li:nth-child(6){
+    animation-delay: 2s;
+}
+
+@keyframes topshift{
+    0%{
+        opacity: 0%;
+        margin-top: -80px;
+    }
+    100%{
+        opacity: 100%;
+        margin-top: 0px;
+    }
 }
 
 .main{
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
     background: url("../img/boy.png") 90% 100%/auto 85% no-repeat , url("../img/bg.jpg") center/cover no-repeat;
 }
 
 
 .title_container{
     float: left;
-    margin: 430px 0px 0px 400px;
+    margin: 430px 0px 0px 404px;
     color: #2c384a;
     text-align: center;
+    opacity: 0;
+    animation: titleMove 1s ease forwards;
+    -o-animation: titleMove 1s ease forwards;
+    -webkit-animation: titleMove 1s ease forwards;
+    animation-delay: 2.4s;
+    -o-animation-delay: 2.4s;
+    -webkit-animation-delay: 2.4s;
+}
+
+@keyframes titleMove{
+    0%{
+        opacity: 0;
+        margin-left: -700px;
+    }
+    100%{
+        opacity: 1;
+        margin-left: 404px;
+    }
 }
 
 .title_container h1{
@@ -67,7 +169,18 @@ nav{
     color: #6d7682;
     font-size: 13px;
     margin: 58px 14px 0px 14px;
+    transition: all 0.7s;
+    transform: scale(1);
 } 
+
+.title_container input:hover{
+    background-color: #344051;
+    color: white;
+}
+
+.title_container input:active{
+    transform: scale(1.1);
+}
 
 .info{
     text-align: center;
@@ -161,6 +274,7 @@ nav{
 
 .keys_image {
     margin-bottom: 40px;
+    width: 100%;
 }
 
 .client{
@@ -243,22 +357,50 @@ nav{
     font-weight: bold;
 }
 
-.statistics{
-    background: url(../img/BgStatistick.png)center/cover no-repeat;
+.statictics_container{
+    box-sizing: border-box;
     text-align: center;
-    margin-top: 150px;
+    transform-style: inherit;
+    width: 100vw;
+    padding-top: 20%;
+    position: relative;
+    overflow: hidden;
+}
+
+.statictics_container::before{
+    content: '';
+    display: block;
+    background-image: url(../img/BgStatistick.png);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform-origin: center;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    transition: 1s;
+    transform: translateZ(-1px) scale(2);
+}
+
+.statistics{
+    /*
+    text-align: center;
+    margin-top: 100px;
+    background-image: url(../img/BgStatistick.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    */
 }
 
 .statictics_container h2{
     text-transform: uppercase;
+    box-sizing: border-box;
     font-size: 25px;
     font-weight: bold;
-    padding-top: 100px;
     margin-bottom: 30px;
-}
-
-.statistick_image{
-    margin-bottom: 100px;
 }
 
 .statictics_container li{
@@ -271,9 +413,11 @@ nav{
     text-transform: uppercase;
 }
 
+
 .statictics_container img{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
+
 
 .reviews{
     text-align: center;
